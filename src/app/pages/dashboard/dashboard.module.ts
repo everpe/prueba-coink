@@ -13,9 +13,9 @@ import { BrowserModule } from '@angular/platform-browser';
   declarations: [DashboardComponent],
   imports: [
     CommonModule,
+    DashboardRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    DashboardRoutingModule,
     MaterialModule,
   ]
 })

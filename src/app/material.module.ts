@@ -17,7 +17,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   imports: [
     LayoutModule,
@@ -36,7 +36,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatDatepickerModule,
     MatNativeDateModule ,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
   ],
   exports: [
     LayoutModule,
@@ -54,7 +55,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     MatDatepickerModule,
-    MatSortModule
+    MatSortModule,
+    MatCheckboxModule
   ],
   providers: [  
     MatDatepickerModule,

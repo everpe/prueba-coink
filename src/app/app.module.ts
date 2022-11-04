@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
 import { AppComponent } from './app.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { LoginComponent } from './pages/login/login.component';
 import { FormComponent } from './pages/form/form.component';
 
 import { TokenInterceptor } from './interceptors/token.interceptor';
@@ -18,7 +17,6 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
   declarations: [
     AppComponent,
     LayoutComponent,
-    LoginComponent,
     FormComponent,
   ],
   imports: [

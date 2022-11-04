@@ -1,8 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-
-import { AuthService } from './../../services/auth.service';
 import { User } from './../../models/auth.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -57,19 +55,23 @@ export class DashboardComponent implements  AfterViewInit  {
   ngAfterViewInit() {
     this.getDataCharacters();
   }
-
+  //Busqueda de personajes por fechas.
   applyFilter() {
-    this.dataSource.data = this.dataSource.data.filter( el => {
-      return  new Date(el.created).getTime() >= new Date(this.fromDate).getTime() && 
-              new Date(el.created).getTime() <= new Date(this.toDate).getTime()
-    });
-    console.log(this.dataSource.data );
-    if(this.dataSource.data.length == 0){
-      alert("No se encontrarón personajes en ese rango de fechas, Limpie el Fromulario de Búsqueda, ¡Por favor!")
-      this.form.reset()
+    if(this.form.get('fromDate')?.value && this.form.get('toDate')?.value){
+      this.dataSource.data = this.dataSource.data.filter( el => {
+        return  new Date(el.created).getTime() >= new Date(this.fromDate).getTime() && 
+                new Date(el.created).getTime() <= new Date(this.toDate).getTime()
+      });
+      // console.log(this.dataSource.data );
+      if(this.dataSource.data.length == 0){
+        alert("No se encontrarón personajes, Limpie el Formulario de Búsqueda, ¡Por favor!")
+      }
+    }else{
+      alert("Ingrese fechas de busqueda");
     }
   }
 
+  //Busuqueda de personajes por Nombre.
   applyFilterUser(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

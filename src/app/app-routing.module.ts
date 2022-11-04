@@ -5,7 +5,6 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { FormComponent } from './pages/form/form.component';
-import { AboutComponent } from './pages/about/about.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -35,16 +34,11 @@ const routes: Routes = [
         component: FormComponent,
         title: 'App - Form'
       },
-      {
-        path: 'about',
-        component: AboutComponent,
-        title: 'App - About'
-      }
     ]
   },
   {
     path: 'login',
-    component: LoginComponent,
+    loadChildren: () => import('../app/pages/login/login.module').then( m => m.LoginModule),
     title: 'App - Login'
   }
 ];
