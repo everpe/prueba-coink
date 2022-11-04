@@ -27,7 +27,7 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        component: DashboardComponent,
+        loadChildren: () => import('../app/pages/dashboard/dashboard.module').then( m => m.DashboardModule),
         title: 'App - Dashboard'
       },
       {

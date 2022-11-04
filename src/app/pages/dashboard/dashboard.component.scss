@@ -1,5 +1,32 @@
 .grid-container {
   margin: 20px;
+  // border:solid red;
+  padding: 0 20px;
+  .mat-h1{
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+  .content{
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .form{
+    padding: 10px;
+    // border: solid yellow;
+    display: flex;
+    justify-content: start;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .buttons{
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+  }
 }
 
 .dashboard-card {
@@ -18,4 +45,29 @@
 
 .dashboard-card-content {
   text-align: center;
+}
+
+  .mat-table {
+    overflow: auto;
+    .mat-cell{
+      padding: 10px;
+    }
+    img{
+      max-width: 50%;
+      border-radius: 50%;
+    }
+  }
+.content-table{
+  overflow: auto;
+}
+
+@media screen and (max-width: 960px) {
+  .grid-container {
+    border: solid blue;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .mat-form-field {
+    width: 100%;
+  }
 }

@@ -1,24 +1,115 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Hello, {{ user?.name }}</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <h1 class="mat-h1">SOLICITUD DE TARJETAS</h1>
+
+  <div class="content">
+    <mat-icon color="white" mat-list-icon>search</mat-icon>Buscar
+  </div>
+
+  <form [formGroup]="form" >
+    <div class="form">
+      <!-- <div> -->
+
+        <mat-form-field appearance="standard">
+          <mat-label>Usuario</mat-label>
+          <input
+            matInput 
+            (keyup)="applyFilterUser($event)"
+            placeholder="Personaje"
+            formControlName="userField"
+          />
+          <mat-error *ngIf="form.controls.userField.invalid"
+            >Campo usuario requerido para la consulta.</mat-error
+          >
+        </mat-form-field>
+      <!-- </div> -->
+      <div class="fechas">
+        <mat-form-field appearance="standard">
+          <input
+            matInput
+            placeholder="Fecha desde"
+            [matDatepicker]="picker1"
+            formControlName="fromDate"
+            required
+            (click)="picker1.open()"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <input
+            matInput
+            placeholder="Fecha hasta"
+            [matDatepicker]="picker2"
+            formControlName="toDate"
+            required
+            (click)="picker2.open()"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+    </div>
+    </div>
+    <div class="buttons">
+      <button
+        mat-stroked-button
+        color="primary"
+        type="button"
+        (click)="ClearForm()"
+      >
+        Limpiar Filtros
+      </button>
+      <button
+        class="button-form"
+        mat-raised-button
+        color="primary"
+        (click)="applyFilter()"
+      >
+        Buscar
+      </button>
+    </div>
+  </form>
+
+
+
+  <div class="content-table">
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Foto </mat-header-cell>
+        <mat-cell *matCellDef="let element"><img [src]="element.image" alt=""> </mat-cell> 
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="species">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Especie </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.species}} </mat-cell >
+      </ng-container>
+    
+      <ng-container matColumnDef="gender">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Genero </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="created">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Creación </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.created | date: 'dd/MM/yyyy'}} </mat-cell>
+      </ng-container>
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
 </div>

@@ -14,6 +14,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   imports: [
@@ -31,6 +34,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatRadioModule,
     MatTableModule,
     MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule ,
+    MatSortModule
   ],
   exports: [
     LayoutModule,
@@ -47,6 +53,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatRadioModule,
     MatTableModule,
     MatPaginatorModule,
-  ]
+    MatDatepickerModule,
+    MatSortModule
+  ],
+  providers: [  
+    MatDatepickerModule,
+    MatNativeDateModule ,  
+  ],
 })
 export class MaterialModule { }
